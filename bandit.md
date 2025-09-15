@@ -14,7 +14,7 @@ because - is a special chacter and will not work with specifying it's path.
 
 Key: 263JGJPfgU6LtdEvgfWU1XP5yac29mFx
 
-#Bandit2
+# Bandit2
 This tests understanding of accessing files with spaces. 
 To pass this test you need to surround the file with quotes.
 Run $ cat ./"--spaces in this filename--" this will make the file
@@ -22,7 +22,7 @@ charaters be interpreted correctly.
 
 Key: MNk8KNH3Usiio41PRUEoDFPqfxLPlSmx
 
-#bandit3
+# bandit3
 This tests knowledge of cd and ls flags. After cd-ing into the folder
 you now need to use ls -la (list list all) to see the hidden file.Once found you can cat the file contentent to get the key. 
 Steps: $ cd inhere $ ls -la $ cat "...Hiding-From-You"
@@ -38,7 +38,7 @@ speeds things up.
 
 Key: 4oQYVPkxZOOEOO5pTW81FB8j8lxXGUQw
 
-#bandit5
+# bandit5
 This tests knowledge of the find command. In this case we can 
 use the command $ find . -type f -size 1033c What this means
 if find something from the current dir . which is of type file 
@@ -46,7 +46,7 @@ with the size of 1033 bytes (c).
 
 Key: HWasnPhtq9AVKe0dmk45nxy20cvUa6EG
 
-#bandit6
+# bandit6
 For this challange you use the same find command with the -user flag.
 The user flag can be added to find files owned but a given user. 
 To find the flag you first need to cd into higher level dirs, in
@@ -64,7 +64,7 @@ in data.txt and provide one line of context on match)
 
 Key: dfwvzFQi4mU0wfNbFOe9RoWskMLg7eEc
 
-#bandit8
+# bandit8
 This game test knowlege of sort, grep and piping. To solve this
 you must first sort the contents of the file. This is nessesary
 as the uniq function only detects repeating lines if they are 
