@@ -17,7 +17,7 @@ Finally the client (my computer) recognizes the response with an ACK TCP packet.
 
 A picture of this communication can be seen below. 
 
-![First request wireshark communication] (./Screenshot 2025-09-23 at 12.52.41 PM.png "First request wireshark")
+![First request wireshark communication] (Screenshot 2025-09-23 at 12.52.41 PM.png "First request wireshark")
 
 ## What this means
 Our client tried to access the endpoint /basicauth/. This endpoint requires the user to authenticated. 
@@ -47,7 +47,7 @@ I immediatly think that this string is base64 encoded. Decoding this string we t
 
 This is our username and password which we had just submitted! This can be seen in the image below:
 
-![Second request response header Authorization](./Screenshot 2025-09-23 at 1.12.01 PM.png "Second request Authorization Header") 
+![Second request response header Authorization](Screenshot 2025-09-23 at 1.12.01 PM.png "Second request Authorization Header") 
 
 ## Previous request
 
