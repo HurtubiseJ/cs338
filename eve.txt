@@ -1,0 +1,126 @@
+John Hurtubise - Eve.txt
+
+# Alice and Bob with Diffe Hellman
+
+To start Alice and Bob agree on g=5, and p=103. Alice sends Bob 10 and Bob sent Alice 71.
+
+In order for Alice to send Bob 10 Alice computed a number X less than p (X<p). This is unknown
+to me (Eve). Alice then uses this number to compute 10 with g^x mod p. (g**x %103). In this case
+we can use a simple for loop in python to brute force X's value as so.
+
+for i in range(103):
+	if (5**i % 103) == 10:
+		print(i)
+
+Running this command we find that x = 45.
+
+We can do the same procedure with Bob. Bob sends 71 so to compute Bobs secrect number Y we want to
+find Y where (g**Y mod p) == 10.
+for i in range(103):
+	if (5**i % 103) == 71:
+		print(i)
+
+
+In this case we find Y to be 67. 
+
+The next step is to compute the shared secret that Alice and Bob will be using.
+At this point we have the following:
+A = 10
+B = 71
+x = 45
+y = 67
+p = 103
+g = 5
+
+Alice runs B^x mod p = 71**45 % 103 = 31
+Bob runs   A^y mod p = 10**67 % 103 = 31
+
+In this case we see both Alice and Bob arived at the shared secret of 31.
+
+# What would have failed
+
+In this case g and p were extreamly small. In the real world these numbers are significantly higher.
+The steps where I found x and y by running a for loop from 0 to 103 would not be feasable. This would
+take an massive amount of time in practice and effectivly secures the messages between Alice and Bob. 
+
+
+# Decifering RSA
+
+Known e_bob = 17, n_bob = 266473
+
+First I want to find Bobs p_a and q_a used to compute n_bob = 266473. Which was computed by
+p_a * q_a = 266473. 
+
+To find this number I ran the following code:
+
+for i in range(10000):
+	for j in range(10000):
+		if i * j == 266473:
+			print(i, j)
+
+>> 439 607
+>> 607 439
+
+In this case both of the numbers 439 and 607 are prime. Therefore, I know p_a = 439 and q_a=607.
+
+I now need to find Bob's d_a. Bob computed this with lambda(n_a) = lcm(p_a - 1, q_a - 1). 
+Using the q_a and p_a just found we get lambda(n_a) = 44238 (run math.lcm(p_a - 1, q_a -1)
+
+Next we need to find d_a such that e_bob * d_a mod lamda(n_a) = 1.
+
+Again we can brute force all numbers to find a valid d_a.
+
+for i in range(10000000):
+	if (e_bob * i) % lam_n_a == 1:
+		print(i)
+
+>>> 10409
+>>> 54647
+.
+.
+.
+>>> 983645
+
+There were about 23 in the list. We then select the lowest value which in this case is 10409. 
+So d_a = 10409
+
+Note: This could have also been completed using a single mathmatical statment with pow() and %.
+
+We now have all the information nessesary to decrypt the bytes. This script first decrypts all the
+bytes into their original form using Y(coded message)^d_a % n_Bob
+
+>>> res = []
+>>> for mes in message:
+...     decrypted = mes**d_a % 266473
+...     res.append(decrypted)
+...     
+>>> print(res)
+[18533, 31008, 17007, 25132, 8296, 25970, 25895, 29472, 29551, 28005, 8291, 29305, 28788, 28519, 29281, 28776, 31008, 26729, 29556, 28530, 31008, 26223, 29216, 31087, 29984, 10344, 29812, 28787, 14895, 12133, 28206, 30569, 27497, 28773, 25705, 24878, 28530, 26415, 30569, 27497, 12116, 26725, 24397, 24935, 26979, 24407, 28530, 25715, 24417, 29285, 24403, 29045, 25953, 28009, 29544, 24399, 29555, 26982, 29281, 26469, 10542, 8264, 24944, 28793, 8294, 24931, 29807, 29289, 28263, 11296, 16748, 26979, 25902]
+
+The last step is to interpret each message as some character. First I will look at 18533. This value 
+converted to binary is (18533).to_bytes(2) = b'He'. 
+Note: I choose 2 bytes here as many of the numbers above are > 2^8 meaning you could not use to_bytes(1).
+
+'He' seems plasuable for our message so I then computed the rest of the decyphered messages.  
+
+>>> bytes = b''
+>>> for mes in res:
+...     bytes = bytes + mes.to_bytes(2)
+...     
+>>> print(bytes)
+"Hey Bob, here's some cryptography history for you (https://en.wikipedia.org/wiki/The_Magic_Words_are_Squeamish_Ossifrage). Happy factoring, Alice."
+
+We have found our message!
+
+# Where would I have failed
+
+In this case the main place I would have failed in a real life scenerio would be factoring n_bob to 
+get p_a q_a. In reality this would be a 2048-bit n and brute forcing this large of a number would be 
+unfeasable as no efficent algorithm exists to do so. 
+
+# Insecurity even with large Alice numbers
+
+The main vulnerability is due to the small 2 byte block size. We can simply encript each value from 
+0-65535. As X (X^(E_b) mod n_b) and store the X and the value. When we see this value in the cipher text
+we can simply use this current cipher value to find the corresponding M. Continue this for each block
+and the text will be deciphered. In reality block sizes are much larger and this is not possible. 
