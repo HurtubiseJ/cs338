@@ -56,3 +56,8 @@
 
 	
 
+## Lessons from 22 years of DMCA:
+	
+- DMCA has somewhat protected the owner ship of data on the internet, will hurting the continuation and modification of data. 
+- Larger Corperations make money off of Copy rights. 
+- App stores can veto things - 
