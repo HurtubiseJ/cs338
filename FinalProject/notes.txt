@@ -1,0 +1,35 @@
+John Hurtubise
+
+I want to study Node Package vulnerabilities and the saftey concerns associated with using 3rd party packages.
+
+I intend to present my work in a the form of a React Native app running on a simulator. Some of the pages will
+contain contain text or video which explain the package vulnerability that I am exploring. Then such pages will
+link to an example of the vulnerability being exploited. Here are some of the vulnerabilities I am looking at.
+
+1. 'react-native-reanimated' versions < 2.10.0 Type of attack: Regular-Expression denial of service. 
+	Older versions of this UI animations library used faulty regular exressions when parsing color
+	string. This meant certian color strings would cause catastrophic backtracking (exponential work)
+	causing CPU spikes and UI hangs
+
+2. 'minimist' versions < 1.2.5 Type of attack: protype-polution flaw. This is a very common package used to 
+	read command line arguments. This is a good example and many other downloaded packages use this package
+	themselves. Meaning you may be unaware you even downloaded this package in the first place. Using this 
+	package attackers could use the vulnerability to set global constructors and prototypes to a specific 
+	value value. Eg. Objects.prototype.isAdmin = True. Allowing unintended use of the app. 
+
+My goal would be to create an Expo Go app which showcases these vulnerabilities and the Node package environment. 
+Using Expo Go everyone in the class would be able to run the app and interact with the vulnerabilities themselves.
+Of course the vulnerabilities will not be harmful in this case. 
+
+Deliverables would be as so:
+
+1. Create the Expo Go app and impliment the react-native-reanmimated vulnerability. Because this is a native package
+	I will simply reproduce the affected code and have a interactive page(s) which display the vulnerability.
+2. Impliment the minimist vunlerability. I can use the minimist 1.2.5 version and have the real package used on 
+	expo go as it is pure JS. Again provide pages to interactivly show the vulnerability.
+3. Write pages explaining each vulnerabilitiy in depth.
+4. Write supporting pages the explain the NPM package environment and why 3rd party package vulnerabilities are 
+	important.
+5. Write documentation such that classmates can quickly run the app and interact with the app (Expo go and --tunnel)
+	functionality. 
+
