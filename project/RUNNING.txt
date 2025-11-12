@@ -1,0 +1,27 @@
+Here are the following steps to run this project locally. 
+
+1. Get a valid version of Node. I am using Node Version Manager (nvm) using Node v24.2.0
+
+2. 'cd' into NPMSupplyChain project folder and run 'npx expo start --clear'. It will ask you
+    to download expo, say yes. 
+
+3. This will automatically run npm install. If not run 'npm install' and make sure node modules 
+    folder exists.
+
+
+(Complete Step 4 or 5)
+
+4. To run on your computer download a simulator. I the iOS simulator through XCode. This is the hardest step.
+    See https://docs.expo.dev/workflow/ios-simulator/ for detailed walk through.
+
+5. To use on your phone. Dowload 'Expo Go' mobile app from Apple App store or Google Play.
+
+6. In the project folder run 'npx expo start --clear'. You should see a lot of output including a 
+    QR code. If you are using the Expo Go mobile app scan the QR code that appears in the terminal. 
+    This will open the app on your device. 
+
+    If you are using a simulator press 'i' in the terminal. This will automatically start the project in 
+    the simulator. 
+
+7. Explore!
+

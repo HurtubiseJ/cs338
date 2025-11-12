@@ -4,17 +4,18 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { router } from "expo-router";
 
 
-export default function SubjectButton({title, description, icon, link, danger=false} : {
+export default function SubjectButton({title, description, icon, link, danger=false, noIcon=false} : {
     title: string,
     description: string,
     icon: React.ReactElement;
     link: string,
     danger?: boolean
+    noIcon?: boolean
 }) {
 
     return (
         <TouchableOpacity 
-        onPress={() => router.push(link as any)}
+        onPress={() => {if (!noIcon) router.push(link as any)}}
         style={{
             width: "100%",
             columnGap: 6,
@@ -41,7 +42,9 @@ export default function SubjectButton({title, description, icon, link, danger=fa
                         color: "#000000",
                     }}>{title}</Text>
                 </View>
-                <Ionicons name="caret-forward-sharp" size={24} color={!danger ? '#313187': "#ED3700"}/>
+                {!noIcon && (
+                    <Ionicons name="caret-forward-sharp" size={24} color={!danger ? '#313187': "#ED3700"}/>
+                )}
             </View>
 
             <View style={{

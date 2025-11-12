@@ -111,7 +111,7 @@ export default function ContentArea({
             { content.map((text) => {
                 if (text.includes("https://")) {
                     return (
-                        <TouchableOpacity onPress={() => openUrl(text)} style={{ paddingTop: 8 }}>
+                        <TouchableOpacity key={text} onPress={() => openUrl(text)} style={{ paddingTop: 8 }}>
 
                             <Text style={{ lineHeight: 22, fontSize: 14, color: '#ffffff', fontStyle: "italic" }}>{text}</Text>
 
@@ -119,7 +119,7 @@ export default function ContentArea({
                     )
                 }
                 return (
-                    <View style={{ paddingTop: 8 }}>
+                    <View key={text} style={{ paddingTop: 8 }}>
                         <Text style={{ lineHeight: 22, fontSize: 14, color: '#dddddd' }}>{text}</Text>
                     </View>
                 )
@@ -136,7 +136,7 @@ export default function ContentArea({
         }}
       >
         { content.map((text) => (
-            <View style={{ paddingTop: 8 }}>
+            <View key={text} style={{ paddingTop: 8 }}>
                 <Text style={{ lineHeight: 22, fontSize: 14 }}>{text}</Text>
             </View>
         ))}

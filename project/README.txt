@@ -1,3 +1,17 @@
+For how to get the demo Running see RUNNING.txt
+
+To see my walk through and explanation of the application see the following link. 
+
+https://drive.google.com/file/d/1byuz1OqrWPfmeYHAkpu52WO7TVFRdkPv/view?usp=drive_link
+
+I recommend the walk through as opposed to spending time getting the project running.
+
+
+
+
+
+
+Project Proposal:
 John Hurtubise
 
 I want to study Node Package vulnerabilities and the saftey concerns associated with using 3rd party packages.

@@ -8,8 +8,8 @@ import SubjectButton from '@/components/SubjectButton';
 const InstalationInfo = {
     header: "Install",
     content: [
-        "The minimist module is installed using the following command",
-        "npm install minimist",
+        "The react native reanimated plugin is installed using the following command",
+        "npm install react-native-reanimated",
         "After install the package is present in the node_modules folder of the React Native application. The package and target version is also added to package.json for subsiquent downloads."
     ]
 }
@@ -18,7 +18,7 @@ const VulenerabilityDescription = {
     header: "How the vulnerability works",
     content: [
         "For an indepth description of the attack see",
-        "https://security.snyk.io/vuln/SNYK-JS-MINIMIST-2429795",
+        "https://github.com/advisories/GHSA-2j79-8pqc-r7x6",
         "https://owasp.org/www-community/attacks/Regular_expression_Denial_of_Service_-_ReDoS",
         "In using the reanimated package you are able to input colors to your components. This allows for colors to be animated along with layouts. The package used the following regex expression to parse the inputed color string for use.",
         "Reanimated Versions < 2.10.0",
@@ -30,7 +30,7 @@ const VulenerabilityDescription = {
 }
 
 const LagPageDesc = {
-    header: "Prototype Injection Ex.",
+    header: "Vulnerable Page Render",
     content: "Consider this page renders a user profile where the user sets the background color. This page uses the VULNERABLE regex pattern. \n\nAlso note what happens if you press this button 2 or more times before navigation."
 }
 
@@ -55,7 +55,7 @@ const BreakAppBehaviorInfo = {
     ]
 }
 
-export default function MinimistPage() {
+export default function ReanimatedPage() {
     const insets = useSafeAreaInsets();
 
     return (
@@ -81,7 +81,7 @@ export default function MinimistPage() {
                         color: '#ffffff', 
                         fontSize: 24,
                         fontWeight: "800"
-                    }}>Minimist Prototype Polution</Text>
+                    }}>Reanimated Exponential Backtracing</Text>
                 </View>
 
                 <View style={{
@@ -95,13 +95,15 @@ export default function MinimistPage() {
                 }}>     
                     <ContentArea header={InstalationInfo.header} content={InstalationInfo.content} />
 
-                    {/* <ContentArea header={VulenerabilityDescription.header} content={VulenerabilityDescription.content} defaultOpen={true}/> */}
+                    <ContentArea header={VulenerabilityDescription.header} content={VulenerabilityDescription.content} defaultOpen={true}/>
 
-                    <SubjectButton title={LagPageDesc.header} description={LagPageDesc.content} link="/MinimistPropertyInj" icon={<View/>}/>
-                    {/* <SubjectButton title={SafePageDesc.header} description={SafePageDesc.content} link="/ReanimatedSafePage" icon={<View/>}/> */}
-                    {/* <SubjectButton danger={true} title={BreakAppPageDesc.header} description={BreakAppPageDesc.content} link="/ReanimatedBreakPage" icon={<View/>}/> */}
+                    <ReanimatedRegexTimer />
 
-                    {/* <ContentArea header={BreakAppBehaviorInfo.header} content={BreakAppBehaviorInfo.content} defaultOpen={true}/> */}
+                    <SubjectButton title={LagPageDesc.header} description={LagPageDesc.content} link="/ReanimatedLagPage" icon={<View/>}/>
+                    <SubjectButton title={SafePageDesc.header} description={SafePageDesc.content} link="/ReanimatedSafePage" icon={<View/>}/>
+                    <SubjectButton danger={true} title={BreakAppPageDesc.header} description={BreakAppPageDesc.content} link="/ReanimatedBreakPage" icon={<View/>}/>
+
+                    <ContentArea header={BreakAppBehaviorInfo.header} content={BreakAppBehaviorInfo.content} defaultOpen={false}/>
                     <View style={{height: 200}} />
                 </View>
             </ScrollView>

@@ -10,7 +10,21 @@ const ReanimatedPage = {
 
 const MinimiPage = {
     title: "Minimist Prototype Polution",
-    description: "minimist Verions <Y had a faulty set key functionality allowing for prototype polution."
+    description: "minimist Verions < 1.2.6 had a faulty set key functionality allowing for prototype polution."
+}
+
+const NPMSupplyChainAttacks = {
+    header: "Supply Chain Attacks",
+    content: [
+        "Supply chain attacks are a group of vunlerabilities targeting downloadable packages within the NPM Package ecosystem.", 
+        "In many Node Projects, including this React Native app, developers will use 3rd party libraries to speed up development. Developers download packages using 'npm' which means 'Node Package Manager'. For example to download the crypto library a developer might run, 'npm install crypto'. ",
+        "This is the same general idea to other package ecosystems such as pip for python.",
+        "These packages are added in the node_modules folder of the application and therefore usable within the application itself.", 
+        "Now, consider the case where crypto has a vulnerability. This means by downloading this package I now inherit the crypto package vulnerability in my applcation.",
+        "This is why it is called a Supply Chain Attack. By infecting one NPM package you are able to infect many other applications across many domains if the package is downloaded withint the project.",
+        "This application explores two historical supply chain vulnerabilities.",
+        "Minimist, and react-native-reanimated"
+    ]
 }
 
 export default function Index() {
@@ -38,9 +52,8 @@ export default function Index() {
             }}>NPM Supply Chain Vulnerabilites</Text>
         </View>
 
-        <ContentArea header={"Supply Chain Attacks"} content={['djfhfegoqubrgouerguerguerbgiebge']} />
+        <ContentArea header={NPMSupplyChainAttacks.header} content={NPMSupplyChainAttacks.content} />
 
-        {/* App sections */}
         <View style={{
             width: '100%',
             flexDirection: "column",
